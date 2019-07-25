@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="layout">
+<meta charset="UTF-8" />
+
+<head>
+    <title>Formulário</title>
+    <style>
+        .titulo {
+            text-align: center;
+        }
+
+        .divForm {
+            width: 40%;
+            border: 1px solid black;
+            margin: auto;
+            padding: 7px;
+            font-family: Arial;
+        }
+
+        .botao {
+            margin-left: 5%;
+            border: 1px solid black;
+            background-color: red;
+            color: white;
+            padding: 7px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<script type="text/javascript">
+
+    function mostrarMensagem() {
+        if (verificarNome() && verificarCPF() && validarEmail() && verificarCheckbox() && verificarSenha()){
+            alert("Enviado!");
+        }
+    }
+
+    function verificarNome() {
+        var nome = document.getElementById("nome").value;
+        var erroNome = document.getElementById("Erronome");
+
+        if (nome.length < 4) {
+            ErroNome.innerHTML = ' O Nome precisa ter mais de 3 caracteres!';
+            ErroNome.style = "color: red";
+            return false;
+        }
+        else if (nome.length >= 4) {
+            ErroNome.innerHTML = ' ✔';
+            ErroNome.style = "color: green";
+            return true;
+        }
+    }
+
+    function verificarCPF() {
+        var cpf = document.getElementById("cpf").value;
+        var ErroCPF = document.getElementById("ErroCPF");
+
+        if (cpf.length < 11) {
+            // alert("O CPF precisa ter 11 digitos!");
+            ErroCPF.innerHTML = ' O CPF precisa ter 11 digitos!';
+            ErroCPF.style = "color: red";
+            return false;
+        }
+        else if (cpf.length >= 11) {
+            ErroCPF.innerHTML = ' ✔';
+            ErroCPF.style = "color: green";
+            return true;
+        }
+    }
+
+    function validarEmail() {
+        var email = document.getElementById("email").value;
+        var ErroEmail = document.getElementById("ErroEmail");
+        var ponto;
+        var arroba;
+
+        for (var i = 0; i < email.length; i++) {
+            var check = email.charAt(i);
+            if (check == '@') {
+                arroba = true;
+            }
+            else if (check == '.') {
+                ponto = true;
+            }
+        }
+        if (ponto == true && arroba == true) {
+            ErroEmail.innerHTML = ' ✔';
+            ErroEmail.style = "color: green";
+            return true;
+        }
+        else {
+            ErroEmail.innerHTML = ' Email invalido!';
+            ErroEmail.style = "color: red";
+            return false;
+        }
+    }
+
+    function verificarCheckbox() {
+        var ErroCheck = document.getElementById("ErroCheck");
+        var opcoes = document.cadastro.areasAt;
+        var qntMarcados = 0;
+
+        for (var i = 0; i < opcoes.length; i++) {
+            if (opcoes[i].checked) {
+                qntMarcados++;
+            }
+        }
+
+        if (qntMarcados < 1) {
+            ErroCheck.innerHTML = ' Selecione uma das opções!';
+            ErroCheck.style = "color: red";
+            return false;
+        } else {
+            ErroCheck.innerHTML = ' ';
+            return true;
+        }
+    }
+
+    function verificarSenha() {
+        var senha = document.getElementById("senha").value;
+        var senhaRepetida = document.getElementById("senhaRepetida").value;
+        var ErroSenha = document.getElementById("ErroSenha");
+        var ErroSenhaRep = document.getElementById("ErroSenhaRep");
+
+        if (senha.length >= 6) {
+            if (senha == senhaRepetida) {
+                ErroSenha.innerHTML = ' ✔';
+                ErroSenha.style = "color: green";
+                ErroSenhaRep.innerHTML = ' ✔';
+                ErroSenhaRep.style = "color: green";
+                return true;
+            }
+            else {
+                ErroSenhaRep.innerHTML = ' Senhas diferentes!';
+                ErroSenhaRep.style = "color: red";
+                ErroSenha.innerHTML = ' ';
+                return false;
+            }
+        }
+        else {
+            ErroSenha.innerHTML = ' A senha precisa ter no minimo 6 caracteres!';
+            ErroSenha.style = "color: red";
+            ErroSenhaRep.innerHTML = ' ';
+            return false;
+        }
+    }
+</script>
+
+<body>
+    <form method="POST" action="cadastro" name="cadastro">
+        <div class="divForm">
+            <h3 class="titulo">Formulário de Cadastro</h3>
+            <br>
+            <label>Nome:
+                <input type="text" id="nome" name="nome" required>
+            </label>
+            <span id="ErroNome"></span>
+            <br /><br />
+            <label>Email:
+                <input type="email" required id="email" name="email">
+            </label>
+            <span id="ErroEmail"></span>
+            <br /><br />
+            <label>CPF:
+                <input type="text" id="cpf" name="cpf" size="21" required>
+            </label>
+            <span id="ErroCPF"></span>
+            <br /><br />
+            <Label>Sexo:
+                <select name="sexo">
+                    <option value="Masculino">Masculino</option>
+                    <option value="Feminino">Feminino</option>
+                </select>
+            </Label>
+            <br /><br />
+            Módulo:
+            <input type="radio" name="modulo" checked value="primeiro">Primeiro
+            <br /><br />
+            <input type="radio" name="modulo" style="margin-left: 9%" value="segundo">Segundo
+            <br /><br />
+            <input type="radio" name="modulo" style="margin-left: 9%" value="terceiro">Terceiro
+            <br /><br />
+            Áreas de Atuação Preferidas:
+            <input type="checkbox" value="programacao" id="1" name="areasAt">Programação
+            <br /><br />
+            <input type="checkbox" style="margin-left: 29.5%" value="redes" id="2" name="areasAt">Redes de
+            Computadores
+            <br /><br />
+            <input type="checkbox" style="margin-left: 29.5%" value="manutencao" id="3" name="areasAt">Manutenção de
+            Computadores
+            <br />
+            <span id="ErroCheck"></span>
+            <br /><br />
+
+            <label>Senha:
+                <input type="password" id="senha" name ="senha" required>
+            </label>
+            <span id="ErroSenha"></span>
+            <br /><br />
+            <label>Repetir
+                <br />Senha:
+                <input type="password" id="senhaRepetida" required>
+            </label>
+            <span id="ErroSenhaRep"></span>
+            <br /><br />
+            <input type="submit" value="Gravar" class="botao"
+                onclick="verificarNome(); verificarCPF(); mostrarMensagem(); verificarCheckbox(); validarEmail(); verificarSenha();">
+            <input type="reset" value="Limpar" class="botao">
+        </div>
+    </form>
+    <p th:text="${nome}"></p>
+    <p th:text="${email}"></p>
+    <p th:text="${cpf}"></p>
+    <p th:text="${sexo}"></p>
+    <p th:text="${modulo}"></p>
+    <p th:text="${areasAt}"></p>
+    <p th:text="${senha}"></p>
+</body>
+
+</html>
