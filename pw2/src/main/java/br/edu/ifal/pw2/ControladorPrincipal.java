@@ -17,23 +17,26 @@ public class ControladorPrincipal{
         return new ModelAndView("form.html");
     }
     @RequestMapping("/cadastro")
-    public ModelAndView cadastro(Aluno aluno){
-
+    public String cadastro(Aluno aluno){
+        String infoCadastrados = "Alunos cadastrados: <br>";
         rep.save(aluno);
 
         Iterable<Aluno> alunos = rep.findAll();    
-        ModelAndView resposta = new ModelAndView("form.html");
+       // ModelAndView resposta = new ModelAndView("form.html");
         for (Aluno al : alunos) {
 
-        resposta.addObject("nome", al.getNome());
-        resposta.addObject("email", al.getEmail());
-        resposta.addObject("cpf", al.getCpf());
-        resposta.addObject("sexo", al.getSexo());
-        resposta.addObject("modulo", al.getModulo());
-        resposta.addObject("areasAt", al.getDadosAreasAt());
-        resposta.addObject("senha", al.getSenha());
+        //resposta.addObject("nome", al.getNome());
+        //resposta.addObject("email", al.getEmail());
+        //resposta.addObject("cpf", al.getCpf());
+        //resposta.addObject("sexo", al.getSexo());
+        //resposta.addObject("modulo", al.getModulo());
+        //resposta.addObject("areasAt", al.getDadosAreasAt());
+        //resposta.addObject("senha", al.getSenha());
+        infoCadastrados += "[Nome: " + al.getNome() + ", Email: " + al.getEmail() + ", CPF: " +
+        al.getCpf() + ", Sexo: " + al.getSexo() + ", Módulo: " + al.getModulo() + ", Áreas: " +
+        al.getDadosAreasAt() + " Senha: " + al.getSenha() + "]" + "<br>";
             
         }
-        return resposta;
+        return infoCadastrados + "<br> <a href='/'>Clique para voltar para o formulário</a>";
     }
 }
