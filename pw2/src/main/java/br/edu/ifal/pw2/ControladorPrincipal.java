@@ -33,8 +33,8 @@ public class ControladorPrincipal{
         //resposta.addObject("areasAt", al.getDadosAreasAt());
         //resposta.addObject("senha", al.getSenha());
         infoCadastrados += "[Nome: " + al.getNome() + ", Email: " + al.getEmail() + ", CPF: " +
-        al.getCpf() + ", Sexo: " + al.getSexo() + ", Módulo: " + al.getModulo() + ", Áreas: " +
-        al.getDadosAreasAt() + " Senha: " + al.getSenha() + "]" + "<br>";
+        al.getCpf() + ", Sexo: " + al.getSexo() + ", Módulo: " + al.getModulo()
+         + ", Senha: " + al.getSenha() + "]" + "<br>";
             
         }
         return infoCadastrados + "<br> <a href='/'>Clique para voltar para o formulário</a>";
