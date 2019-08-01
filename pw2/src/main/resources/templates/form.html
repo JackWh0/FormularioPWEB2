@@ -34,8 +34,7 @@
             return false;
         }
         else if (nome.length >= 4) {
-            ErroNome.innerHTML = ' ✔';
-            ErroNome.style = "color: green";
+            ErroNome.innerHTML = ' ';
             return true;
         }
     }
@@ -51,8 +50,7 @@
             return false;
         }
         else if (cpf.length >= 11) {
-            ErroCPF.innerHTML = ' ✔';
-            ErroCPF.style = "color: green";
+            ErroCPF.innerHTML = ' ';
             return true;
         }
     }
@@ -73,8 +71,7 @@
             }
         }
         if (ponto == true && arroba == true) {
-            ErroEmail.innerHTML = ' ✔';
-            ErroEmail.style = "color: green";
+            ErroEmail.innerHTML = ' ';
             return true;
         }
         else {
@@ -113,10 +110,8 @@
 
         if (senha.length >= 6) {
             if (senha == senhaRepetida) {
-                ErroSenha.innerHTML = ' ✔';
-                ErroSenha.style = "color: green";
-                ErroSenhaRep.innerHTML = ' ✔';
-                ErroSenhaRep.style = "color: green";
+                ErroSenha.innerHTML = ' ';
+                ErroSenhaRep.innerHTML = ' ';
                 return true;
             }
             else {
@@ -171,20 +166,20 @@
                         <div class="col-lg-5">
                             <label class="col-form-label col-sm-5 pt-0">Módulo:</label>
                             <div class="custom-control custom-radio">
-                                <input type="radio" id="ee" value="primeiro" name="modulo" class="custom-control-input"
+                                <input type="radio" id="primeiro" value="primeiro" name="modulo" class="custom-control-input"
                                     checked>
-                                <label class="custom-control-label" for="ee">Primeiro</label>
+                                <label class="custom-control-label" for="primeiro">Primeiro</label>
                             </div>
 
                             <div class="custom-control custom-radio">
-                                <input type="radio" id="eee" value="segundo" name="modulo" class="custom-control-input">
-                                <label class="custom-control-label" for="eee">Segundo</label>
+                                <input type="radio" id="segundo" value="segundo" name="modulo" class="custom-control-input">
+                                <label class="custom-control-label" for="segundo">Segundo</label>
                             </div>
 
                             <div class="custom-control custom-radio">
-                                <input type="radio" id="eeee" value="terceiro" name="modulo"
+                                <input type="radio" id="terceiro" value="terceiro" name="modulo"
                                     class="custom-control-input">
-                                <label class="custom-control-label" for="eeee">Terceiro</label>
+                                <label class="custom-control-label" for="terceiro">Terceiro</label>
                             </div>
                         </div>
                         <div class="col-lg-7">
