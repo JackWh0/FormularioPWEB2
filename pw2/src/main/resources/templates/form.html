@@ -18,12 +18,6 @@
 </head>
 <script type="text/javascript">
 
-    function mostrarMensagem() {
-        if (verificarNome() && verificarCPF() && validarEmail() && verificarCheckbox() && verificarSenha()) {
-            alert("Enviado!");
-        }
-    }
-
     function verificarNome() {
         var nome = document.getElementById("nome").value;
         var erroNome = document.getElementById("Erronome");
@@ -232,7 +226,7 @@
 
 
                     <button class="btn btn-info btn-lg" type="submit"
-                        onclick="verificarNome(); verificarCPF(); mostrarMensagem(); verificarCheckbox(); validarEmail(); verificarSenha();">Enviar</button>
+                        onclick="verificarNome(); verificarCPF(); verificarCheckbox(); validarEmail(); verificarSenha();">Enviar</button>
                     <button class="btn btn btn-secondary btn-md" type="reset">Limpar</button>
                 </form>
             </div>
