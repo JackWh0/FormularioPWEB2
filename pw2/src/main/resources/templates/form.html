@@ -136,21 +136,21 @@
                     <h2 class="section-heading mb-4 mt-4">Formulário de Cadastro</h2>
 
                     <span id="ErroNome"></span>
-                    <input type="text" id="nome" class="form-control mb-4" name="nome" placeholder="Nome" required>
+                    <input type="text" id="nome" class="form-control mb-4" name="nome" placeholder="Nome" required th:value="${aluno.nome}">
 
                     <span id="ErroEmail"></span>
-                    <input type="email" id="email" class="form-control mb-4" name="email" placeholder="E-mail" required>
+                    <input type="email" id="email" class="form-control mb-4" name="email" placeholder="E-mail" required th:value="${aluno.email}">
 
                     <span id="ErroCPF"></span>
-                    <input type="text" id="cpf" class="form-control mb-4" name="cpf" placeholder="CPF" required>
+                    <input type="text" id="cpf" class="form-control mb-4" name="cpf" placeholder="CPF" required th:value="${aluno.cpf}">
 
                     <div class="form-group">
                         <div class="row">
                             <div class="col-sm-4">
                                 <label class="col-form-label col-sm-5 pt-0">Sexo:</label>
                                 <select class="browser-default custom-select mb-4 mdb-select md-form" name="sexo">
-                                    <option value="Masculino">Masculino</option>
-                                    <option value="Feminino">Feminino</option>
+                                    <option value="Masculino" th:selected = "${aluno.sexo == 'Masculino'}">Masculino</option>
+                                    <option value="Feminino" th:selected = "${aluno.sexo == 'Feminino'}">Feminino</option>
                                 </select>
                             </div>
                         </div>
@@ -161,18 +161,18 @@
                             <label class="col-form-label col-sm-5 pt-0">Módulo:</label>
                             <div class="custom-control custom-radio">
                                 <input type="radio" id="primeiro" value="primeiro" name="modulo" class="custom-control-input"
-                                    checked>
-                                <label class="custom-control-label" for="primeiro">Primeiro</label>
+                                    checked th:checked="${aluno.modulo == 'primeiro'}">
+                                <label class="custom-control-label" for="primeiro" >Primeiro</label>
                             </div>
 
                             <div class="custom-control custom-radio">
-                                <input type="radio" id="segundo" value="segundo" name="modulo" class="custom-control-input">
+                                <input type="radio" id="segundo" value="segundo" name="modulo" class="custom-control-input" th:checked="${aluno.modulo == 'segundo'}">
                                 <label class="custom-control-label" for="segundo">Segundo</label>
                             </div>
 
                             <div class="custom-control custom-radio">
                                 <input type="radio" id="terceiro" value="terceiro" name="modulo"
-                                    class="custom-control-input">
+                                    class="custom-control-input" th:checked="${aluno.modulo == 'terceiro'}">
                                 <label class="custom-control-label" for="terceiro">Terceiro</label>
                             </div>
                         </div>
@@ -183,19 +183,20 @@
                             <label class="col-form-label pt-0">Áreas de Atuação Preferidas:</label>
                             <div class="custom-control custom-checkbox">
                                 <input type="checkbox" class="custom-control-input" id="1" name="areasAt"
-                                    value="programacao">
-                                <label class="custom-control-label" for="1">Programação</label>
+                                    value="programacao" th:checked="${#arrays.contains(aluno.areasAt, 'programacao')}">
+                                <label class="custom-control-label" for="1" >Programação</label>
                             </div>
 
                             <div class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" id="2" name="areasAt" value="redes">
-                                <label class="custom-control-label" for="2">Redes de Computadores</label>
+                                <input type="checkbox" class="custom-control-input" id="2" name="areasAt" value="redes"
+                                th:checked="${#arrays.contains(aluno.areasAt, 'redes')}">
+                                <label class="custom-control-label" for="2" >Redes de Computadores</label>
                             </div>
 
                             <div class="custom-control custom-checkbox">
                                 <input type="checkbox" class="custom-control-input" id="3" name="areasAt"
-                                    value="manutencao">
-                                <label class="custom-control-label" for="3">Manutenção de Computadores</label>
+                                    value="manutencao" th:checked="${#arrays.contains(aluno.areasAt, 'manutencao')}" >
+                                <label class="custom-control-label" for="3" >Manutenção de Computadores</label>
                             </div>
 
 
@@ -214,12 +215,12 @@
                         <div class="col">
 
                             <input type="password" id="senha" name="senha" class="form-control mb-4" placeholder="Senha"
-                                required>
+                                required th:value="${aluno.senha}">
                         </div>
 
                         <div class="col">
                             <input type="password" id="senhaRepetida" class="form-control mb-4"
-                                placeholder="Repetir Senha" required>
+                                placeholder="Repetir Senha" required th:value="${aluno.senha}">
                         </div>
 
                     </div>
