@@ -1,6 +1,5 @@
 <!doctype html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <!-- Required meta tags -->
@@ -15,32 +14,43 @@
 </head>
 
 <body>
-    <h1>.:Lista de Alunos Cadastrado:.</h1>
+    <div class="container">
+        <h1>.:Lista de Alunos Cadastrado:.</h1>
+        <br>
+        <form>
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="Pesquise pelo nome" id="id" name="id">
+                <span class="input-group-btn">
+                  <button class="btn btn-info" type="button">Pesquisar</button>
+                </span>
+              </div>
+        </form>
+        <br>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Nome</th>
+                    <th scope="col">Email</th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="aluno:${alunos}">
+                    <th scope="row" th:text="${aluno.id}">#</th>
+                    <td th:text="${aluno.nome}"></td>
+                    <td th:text="${aluno.email}"></td>
+                    <td><a th:href="@{'/excluir_aluno/' + ${aluno.id}}"><img src="img/delete.png" height="16"
+                                width="16"></a></td>
+                    <td><a th:href="@{'/atualizar_aluno/' + ${aluno.id} + '/'}"><img src="img/atualiza.png" height="16"
+                                width="16"></a></td>
+                </tr>
+            </tbody>
+        </table>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th scope="col">ID</th>
-                <th scope="col">Nome</th>
-                <th scope="col">Email</th>                
-                <th scope="col"></th>
-                <th scope="col"></th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr th:each="aluno:${alunos}">
-                <th scope="row" th:text="${aluno.id}">#</th>
-                <td th:text="${aluno.nome}"></td>
-                <td th:text="${aluno.email}"></td>                
-                <td><a th:href="@{'/excluir_aluno/' + ${aluno.id}}"><img src="img/delete.png" height="16" width="16"></a></td>                
-                <td><a th:href="@{'/atualizar_aluno/' + ${aluno.id}}"><img src="img/atualiza.png" height="16" width="16"></a></td>                
-            </tr>
-        </tbody>
-    </table>
-    
-    <p th:text="${mensagem}"></p>
-
-
+        <p th:text="${mensagem}"></p>
+    </div>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
