@@ -16,7 +16,7 @@ public class Aluno{
     private String cpf;
     private String sexo;
     private String modulo;
-    private String[] areasAt;
+    private String[] areasAt = {};
     private String senha;
 
     public Long getId() {

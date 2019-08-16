@@ -3,6 +3,7 @@ package br.edu.ifal.pw2;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -17,7 +18,9 @@ public class ControladorPrincipal{
 
     @RequestMapping("/")
     public ModelAndView index(){
-        return new ModelAndView("form.html");
+        ModelAndView retorno = new ModelAndView("form.html");
+        retorno.addObject("aluno", new Aluno());
+        return retorno;
     }
     @RequestMapping("/cadastro")
     public ModelAndView cadastroAluno(Aluno aluno, RedirectAttributes redirect) {
@@ -26,7 +29,6 @@ public class ControladorPrincipal{
         redirect.addFlashAttribute("mensagem", aluno.getNome() + " cadastrado com sucesso.");
         return retorno;
     }
-   
 
     @RequestMapping("/listar_alunos")
     public ModelAndView listarAlunos() {
@@ -41,9 +43,9 @@ public class ControladorPrincipal{
         Optional<Aluno> opcao = rep.findById(alunoID);
         ModelAndView retorno = new ModelAndView("redirect:/listar_alunos");        
         if(opcao.isPresent()){
-            Aluno a = opcao.get();
-            rep.deleteById(a.getId());            
-            redirect.addFlashAttribute("mensagem", a.getNome() + " excluído com sucesso.");
+            Aluno aluno = opcao.get();
+            rep.deleteById(aluno.getId());            
+            redirect.addFlashAttribute("mensagem", aluno.getNome() + " excluído com sucesso.");
             return retorno;
         } else {
             redirect.addFlashAttribute("mensagem", "Aluno " + alunoID + " não existe no Banco de Dados.");
@@ -52,17 +54,17 @@ public class ControladorPrincipal{
         
     }
 
-    @RequestMapping("/atualizar_aluno/{idAluno}")
+    @GetMapping("/atualizar_aluno/{idAluno}")
     public ModelAndView atualizar(@PathVariable("idAluno") Long alunoID) {
         Optional<Aluno> opcao = rep.findById(alunoID);
-        ModelAndView retorno = new ModelAndView("formulario.html");
+        
+        ModelAndView retorno = new ModelAndView("form.html");
+
         if(opcao.isPresent()){
-            Aluno a = opcao.get();
-            retorno.addObject("aluno", a);
+            Aluno aluno = opcao.get();
+            retorno.addObject("aluno", aluno);
             return retorno;
         }
         return retorno;
-    
-
-}
+    }
 }

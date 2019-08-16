@@ -131,26 +131,30 @@
             <div class="col-lg-2">
             </div>
             <div class="col-lg-8 ">
-                <form method="POST" action="cadastro" name="cadastro">
+                <form method="POST" action="/cadastro">
 
                     <h2 class="section-heading mb-4 mt-4">Formulário de Cadastro</h2>
-
+                    <input type="hidden" name="id" id="id" th:value="${aluno.id}">
                     <span id="ErroNome"></span>
-                    <input type="text" id="nome" class="form-control mb-4" name="nome" placeholder="Nome" required th:value="${aluno.nome}">
+                    <input type="text" id="nome" class="form-control mb-4" name="nome" placeholder="Nome" required
+                        th:value="${aluno.nome}">
 
                     <span id="ErroEmail"></span>
-                    <input type="email" id="email" class="form-control mb-4" name="email" placeholder="E-mail" required th:value="${aluno.email}">
+                    <input type="email" id="email" class="form-control mb-4" name="email" placeholder="E-mail" required
+                        th:value="${aluno.email}">
 
                     <span id="ErroCPF"></span>
-                    <input type="text" id="cpf" class="form-control mb-4" name="cpf" placeholder="CPF" required th:value="${aluno.cpf}">
+                    <input type="text" id="cpf" class="form-control mb-4" name="cpf" placeholder="CPF" required
+                        th:value="${aluno.cpf}">
 
                     <div class="form-group">
                         <div class="row">
                             <div class="col-sm-4">
                                 <label class="col-form-label col-sm-5 pt-0">Sexo:</label>
                                 <select class="browser-default custom-select mb-4 mdb-select md-form" name="sexo">
-                                    <option value="Masculino" th:selected = "${aluno.sexo == 'Masculino'}">Masculino</option>
-                                    <option value="Feminino" th:selected = "${aluno.sexo == 'Feminino'}">Feminino</option>
+                                    <option value="Masculino" th:selected="${aluno.sexo == 'Masculino'}">Masculino
+                                    </option>
+                                    <option value="Feminino" th:selected="${aluno.sexo == 'Feminino'}">Feminino</option>
                                 </select>
                             </div>
                         </div>
@@ -160,13 +164,14 @@
                         <div class="col-lg-5">
                             <label class="col-form-label col-sm-5 pt-0">Módulo:</label>
                             <div class="custom-control custom-radio">
-                                <input type="radio" id="primeiro" value="primeiro" name="modulo" class="custom-control-input"
-                                    checked th:checked="${aluno.modulo == 'primeiro'}">
-                                <label class="custom-control-label" for="primeiro" >Primeiro</label>
+                                <input type="radio" id="primeiro" value="primeiro" name="modulo"
+                                    class="custom-control-input" checked th:checked="${aluno.modulo == 'primeiro'}">
+                                <label class="custom-control-label" for="primeiro">Primeiro</label>
                             </div>
 
                             <div class="custom-control custom-radio">
-                                <input type="radio" id="segundo" value="segundo" name="modulo" class="custom-control-input" th:checked="${aluno.modulo == 'segundo'}">
+                                <input type="radio" id="segundo" value="segundo" name="modulo"
+                                    class="custom-control-input" th:checked="${aluno.modulo == 'segundo'}">
                                 <label class="custom-control-label" for="segundo">Segundo</label>
                             </div>
 
@@ -236,13 +241,6 @@
         </div>
     </div>
     </div>
-    <!-- <p th:text="${nome}"></p>
-    <p th:text="${email}"></p>
-    <p th:text="${cpf}"></p>
-    <p th:text="${sexo}"></p>
-    <p th:text="${modulo}"></p>
-    <p th:text="${areasAt}"></p>
-    <p th:text="${senha}"></p>  -->
 </body>
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
