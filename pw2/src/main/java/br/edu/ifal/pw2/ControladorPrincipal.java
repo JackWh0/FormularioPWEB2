@@ -17,7 +17,9 @@ public class ControladorPrincipal{
 
     @RequestMapping("/")
     public ModelAndView index(){
-        return new ModelAndView("form.html");
+        ModelAndView retorno = new ModelAndView("form.html");
+        retorno.addObject("aluno", new Aluno());
+        return retorno;
     }
     @RequestMapping("/cadastro")
     public ModelAndView cadastroAluno(Aluno aluno, RedirectAttributes redirect) {
@@ -55,14 +57,29 @@ public class ControladorPrincipal{
     @RequestMapping("/atualizar_aluno/{idAluno}")
     public ModelAndView atualizar(@PathVariable("idAluno") Long alunoID) {
         Optional<Aluno> opcao = rep.findById(alunoID);
-        ModelAndView retorno = new ModelAndView("formulario.html");
+        ModelAndView retorno = new ModelAndView("form.html");
+
         if(opcao.isPresent()){
-            Aluno a = opcao.get();
-            retorno.addObject("aluno", a);
+            Aluno aluno = opcao.get();
+            retorno.addObject("aluno", aluno);
             return retorno;
         }
         return retorno;
-    
+    }
 
-}
+    // @RequestMapping("/resultadosPesquisa")
+    // public ModelAndView resultadosPesquisa(@PathVariable("idAluno") Long alunoID) {
+    //     Optional<Aluno> opcao = rep.findById(alunoID);
+    //     ModelAndView retorno = new ModelAndView("listar_alunos.html");
+
+    //     if(opcao.isPresent()){
+    //         Aluno aluno = opcao.get();
+    //         if(aluno.getId() == alunoID){
+    //             retorno.addObject("aluno", aluno);
+    //             return retorno;
+    //         }    
+    //     }
+    //     return retorno;
+    // }
+
 }
