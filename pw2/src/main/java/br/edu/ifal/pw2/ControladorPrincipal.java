@@ -3,25 +3,29 @@ package br.edu.ifal.pw2;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.web.bind.annotation.GetMapping;
+
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @RestController
-public class ControladorPrincipal{
+public class ControladorPrincipal {
 
     @Autowired
     AlunoRepositorio rep;
 
     @RequestMapping("/")
-    public ModelAndView index(){
+    public ModelAndView index() {
         ModelAndView retorno = new ModelAndView("form.html");
         retorno.addObject("aluno", new Aluno());
         return retorno;
     }
+
     @RequestMapping("/cadastro")
     public ModelAndView cadastroAluno(Aluno aluno, RedirectAttributes redirect) {
         rep.save(aluno);
@@ -39,55 +43,39 @@ public class ControladorPrincipal{
     }
 
     @RequestMapping("/excluir_aluno/{idAluno}")
-    public ModelAndView excluirAlunos(@PathVariable("idAluno") Long alunoID, RedirectAttributes redirect) {
+    public ModelAndView excluir(@PathVariable("idAluno") Long alunoID, RedirectAttributes redirect) {
         Optional<Aluno> opcao = rep.findById(alunoID);
-        ModelAndView retorno = new ModelAndView("redirect:/listar_alunos");        
-        if(opcao.isPresent()){
+        ModelAndView retorno = new ModelAndView("redirect:/listar_alunos");
+        if (opcao.isPresent()) {
             Aluno aluno = opcao.get();
-            rep.deleteById(aluno.getId());            
+            rep.deleteById(aluno.getId());
             redirect.addFlashAttribute("mensagem", aluno.getNome() + " excluído com sucesso.");
             return retorno;
         } else {
             redirect.addFlashAttribute("mensagem", "Aluno " + alunoID + " não existe no Banco de Dados.");
             return retorno;
         }
-        
+
     }
 
     @GetMapping("/atualizar_aluno/{idAluno}")
     public ModelAndView atualizar(@PathVariable("idAluno") Long alunoID) {
         Optional<Aluno> opcao = rep.findById(alunoID);
-<<<<<<< HEAD
-        
-=======
->>>>>>> fbd86d370d05cafa8b3eea27fdcdb01bff687497
         ModelAndView retorno = new ModelAndView("form.html");
 
-        if(opcao.isPresent()){
+        if (opcao.isPresent()) {
             Aluno aluno = opcao.get();
             retorno.addObject("aluno", aluno);
             return retorno;
         }
         return retorno;
     }
-<<<<<<< HEAD
+
+    @RequestMapping("/busca")
+    public ModelAndView buscar(String q) {
+        ModelAndView retorno = new ModelAndView("listar_alunos.html");
+        Iterable<Aluno> alunosEncontrados = rep.findByNomeContaining(q);
+        retorno.addObject("alunos", alunosEncontrados);
+        return retorno;
+    }
 }
-=======
-
-    // @RequestMapping("/resultadosPesquisa")
-    // public ModelAndView resultadosPesquisa(@PathVariable("idAluno") Long alunoID) {
-    //     Optional<Aluno> opcao = rep.findById(alunoID);
-    //     ModelAndView retorno = new ModelAndView("listar_alunos.html");
-
-    //     if(opcao.isPresent()){
-    //         Aluno aluno = opcao.get();
-    //         if(aluno.getId() == alunoID){
-    //             retorno.addObject("aluno", aluno);
-    //             return retorno;
-    //         }    
-    //     }
-    //     return retorno;
-    // }
-
-}
->>>>>>> fbd86d370d05cafa8b3eea27fdcdb01bff687497
