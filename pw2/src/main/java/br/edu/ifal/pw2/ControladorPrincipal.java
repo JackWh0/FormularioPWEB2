@@ -57,10 +57,7 @@ public class ControladorPrincipal{
     @GetMapping("/atualizar_aluno/{idAluno}")
     public ModelAndView atualizar(@PathVariable("idAluno") Long alunoID) {
         Optional<Aluno> opcao = rep.findById(alunoID);
-<<<<<<< HEAD
         
-=======
->>>>>>> fbd86d370d05cafa8b3eea27fdcdb01bff687497
         ModelAndView retorno = new ModelAndView("form.html");
 
         if(opcao.isPresent()){
@@ -70,24 +67,4 @@ public class ControladorPrincipal{
         }
         return retorno;
     }
-<<<<<<< HEAD
 }
-=======
-
-    // @RequestMapping("/resultadosPesquisa")
-    // public ModelAndView resultadosPesquisa(@PathVariable("idAluno") Long alunoID) {
-    //     Optional<Aluno> opcao = rep.findById(alunoID);
-    //     ModelAndView retorno = new ModelAndView("listar_alunos.html");
-
-    //     if(opcao.isPresent()){
-    //         Aluno aluno = opcao.get();
-    //         if(aluno.getId() == alunoID){
-    //             retorno.addObject("aluno", aluno);
-    //             return retorno;
-    //         }    
-    //     }
-    //     return retorno;
-    // }
-
-}
->>>>>>> fbd86d370d05cafa8b3eea27fdcdb01bff687497

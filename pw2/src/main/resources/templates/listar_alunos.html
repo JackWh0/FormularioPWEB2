@@ -12,33 +12,6 @@
 </head>
 
 <body>
-<<<<<<< HEAD
-    <h1>.:Lista de Alunos Cadastrado:.</h1>
-
-    <table class="table">
-        <thead>
-            <tr>
-                <th scope="col">ID</th>
-                <th scope="col">Nome</th>
-                <th scope="col">Email</th>                
-                <th scope="col"></th>
-                <th scope="col"></th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr th:each="aluno:${alunos}">
-                <th scope="row" th:text="${aluno.id}">#</th>
-                <td th:text="${aluno.nome}"></td>
-                <td th:text="${aluno.email}"></td>                
-                <td><a th:href="@{'/excluir_aluno/' + ${aluno.id}}"><img src="img/delete.png" height="16" width="16"></a></td>                
-                <td><a th:href="@{'/atualizar_aluno/' + ${aluno.id} + '/'}"><img src="img/atualiza.png" height="16" width="16"></a></td>                
-            </tr>
-        </tbody>
-    </table>
-    
-    <p th:text="${mensagem}"></p>
-
-=======
     <div class="container">
         <h1>.:Lista de Alunos Cadastrado:.</h1>
         <br>
@@ -78,7 +51,6 @@
     </div>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
->>>>>>> fbd86d370d05cafa8b3eea27fdcdb01bff687497
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>
